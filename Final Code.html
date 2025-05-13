@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACL Repair: Which Method is Right for You?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 25px;
+            width: 1px;
+            height: calc(100% - 15px);
+            background: #d1d5db;
+        }
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        /* Hero section specific animation */
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .hero-content.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-content.visible h1 {
+            transition-delay: 0.1s;
+        }
+        
+        .hero-content.visible p {
+            transition-delay: 0.3s;
+        }
+        
+        .hero-content.visible a {
+            transition-delay: 0.5s;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <i class="fas fa-dumbbell text-blue-500 text-2xl mr-2"></i>
+                            <span class="font-semibold text-gray-900 text-lg">ACL Repair Hub</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home" class="py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-medium">Home</a>
+                    <a href="#quiz" class="py-4 px-2 text-gray-500 font-medium hover:text-blue-500 transition duration-300">Quiz</a>
+                    <a href="#methods" class="py-4 px-2 text-gray-500 font-medium hover:text-blue-500 transition duration-300">Methods</a>
+                    <a href="#recovery" class="py-4 px-2 text-gray-500 font-medium hover:text-blue-500 transition duration-300">Recovery</a>
+                    <a href="#references" class="py-4 px-2 text-gray-500 font-medium hover:text-blue-500 transition duration-300">References</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu">
+            <ul class="">
+                <li><a href="#home" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Home</a></li>
+                <li><a href="#quiz" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Quiz</a></li>
+                <li><a href="#methods" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Methods</a></li>
+                <li><a href="#recovery" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Recovery</a></li>
+                <li><a href="#references" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">References</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+        <div class="container mx-auto px-6 text-center hero-content">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">ACL Repair: Which Method is Right for You?</h1>
+            <p class="text-xl md:text-2xl mb-12">Explore the latest treatment options and find your personalized recovery path</p>
+            <a href="#quiz" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg">
+                Take the Quiz Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Key Statistics About ACL Repair Methods</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Success Rates Chart -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Success Rates of ACL Repair Methods</h3>
+                    <p class="text-sm text-gray-600 mb-2">(Paterno, 2017, p. 323) (Wang et al., 2021, p. 9) (Paterno et al., 2014, p. 6)</p>
+                    <div class="h-64">
+                        <canvas id="successChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Complications Chart -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Common Complications</h3>
+                    <p class="text-sm text-gray-600 mb-2">(Grassi et al., 2022, p. 6)</p>
+                    <div class="h-64">
+                        <canvas id="complicationsChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Recovery Timeline Chart -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Average Recovery Duration</h3>
+                    <p class="text-sm text-gray-600 mb-2">(Paterno, 2017, p. 323) (Wang et al., 2021, p. 9) (Paterno et al., 2014, p. 6)</p>
+                    <div class="h-64">
+                        <canvas id="recoveryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Common Knee Injuries Chart -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Most Common Knee Injuries</h3>
+                    <p class="text-sm text-gray-600 mb-2">(Saueressig et al., 2022, pp. 8-11)</p>
+                    <div class="h-64">
+                        <canvas id="injuriesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="py-16 bg-gray-100 section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Find Your Best ACL Repair Option</h2>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-8">
+                    <div id="quiz-container">
+                        <div id="quiz-intro">
+                            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Take Our Personalized Quiz</h3>
+                            <p class="text-gray-600 mb-6">Answer a few questions about your situation and we'll recommend the ACL repair method that might be best for you.</p>
+                            <button onclick="startQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Start Quiz
+                            </button>
+                        </div>
+                        
+                        <div id="quiz-questions" class="hidden">
+                            <div class="mb-6">
+                                <h4 class="text-lg font-medium mb-4" id="question-text">Question</h4>
+                                <div id="options-container" class="space-y-3"></div>
+                            </div>
+                            <div class="flex justify-between">
+                                <button id="prev-btn" onclick="prevQuestion()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-300 hidden">
+                                    Previous
+                                </button>
+                                <button id="next-btn" onclick="nextQuestion()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="quiz-results" class="hidden">
+                            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Your Recommended Treatment</h3>
+                            <div id="result-content" class="mb-6"></div>
+                            <button onclick="resetQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                                Take Quiz Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methods Section -->
+    <section id="methods" class="py-16 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">ACL Repair Methods Compared</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Traditional ACL Reconstruction -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                    <div class="bg-blue-600 p-4 text-white">
+                        <h3 class="text-xl font-semibold">Traditional ACL Reconstruction</h3>
+                        <p class="text-sm">(Ardern et al., 2011, p. 1)</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">Step-by-Step Process</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Graft harvested from patellar tendon, hamstring, or cadaver</li>
+                                <li>Arthroscopic procedure to remove damaged ligament</li>
+                                <li>Bone tunnels drilled in femur and tibia</li>
+                                <li>Graft secured with screws or other fixation devices</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">Pros & Cons</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <h5 class="font-medium text-green-800">Pros</h5>
+                                    <ul class="list-disc pl-5 mt-2 text-sm">
+                                        <li>High success rate (85-95%)</li>
+                                        <li>Well-established procedure</li>
+                                        <li>Good long-term outcomes</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-100 p-3 rounded-lg">
+                                    <h5 class="font-medium text-red-800">Cons</h5>
+                                    <ul class="list-disc pl-5 mt-2 text-sm">
+                                        <li>Risk of graft failure (5-10%)</li>
+                                        <li>Donor site morbidity</li>
+                                        <li>Long recovery period</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#recovery" class="text-blue-600 font-medium hover:underline">View Recovery Timeline →</a>
+                    </div>
+                </div>
+                
+                <!-- Non-Surgical Rehabilitation -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                    <div class="bg-green-600 p-4 text-white">
+                        <h3 class="text-xl font-semibold">Non-Surgical Rehabilitation</h3>
+                        <p class="text-sm">(Saueressig et al., 2022, pp. 2-3)</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">Who's a Candidate?</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Partial ACL tears</li>
+                                <li>Low-demand patients (sedentary lifestyle)</li>
+                                <li>Patients with complete tears who can compensate with muscle strength</li>
+                                <li>Those with medical contraindications to surgery</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">Pros & Cons</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <h5 class="font-medium text-green-800">Pros</h5>
+                                    <ul class="list-disc pl-5 mt-2 text-sm">
+                                        <li>Avoids surgical risks</li>
+                                        <li>No donor site morbidity</li>
+                                        <li>Lower initial cost</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-100 p-3 rounded-lg">
+                                    <h5 class="font-medium text-red-800">Cons</h5>
+                                    <ul class="list-disc pl-5 mt-2 text-sm">
+                                        <li>Higher reinjury risk</li>
+                                        <li>May develop instability</li>
+                                        <li>Not suitable for athletes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#recovery" class="text-blue-600 font-medium hover:underline">View Recovery Timeline →</a>
+                    </div>
+                </div>
+                
+                <!-- Stem Cell-Augmented ACLR -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                    <div class="bg-purple-600 p-4 text-white">
+                        <h3 class="text-xl font-semibold">Stem Cell-Augmented ACLR</h3>
+                        <p class="text-sm">(Mifune et al., 2012, p. 1662)</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">How Stem Cells Work</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Mesenchymal stem cells (MSCs) harvested from bone marrow or fat</li>
+                                <li>Cells processed and concentrated</li>
+                                <li>Injected into graft site during surgery</li>
+                                <li>Promote tissue regeneration and reduce inflammation</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">Current Research Findings</h4>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-chart-line text-purple-600 mr-2"></i>
+                                    <span>20% faster graft integration in clinical trials</span>
+                                </div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-bolt text-purple-600 mr-2"></i>
+                                    <span>Reduced post-op pain in 68% of patients</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-running text-purple-600 mr-2"></i>
+                                    <span>Earlier return to sport by 2-3 months</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2 text-yellow-800">Ethical Considerations</h4>
+                            <p class="text-sm">(<i>Examining the Ethics</i>, 2008) Stem cell research raises ethical concerns about cell sourcing, particularly when embryonic stem cells are used. While mesenchymal stem cells are typically harvested from adult donors, questions remain about commercialization of human tissue and equitable access to these advanced treatments.</p>
+                        </div>
+                        <a href="#recovery" class="text-blue-600 font-medium hover:underline">View Recovery Timeline →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recovery Comparison Section -->
+    <section id="recovery" class="py-16 bg-gray-100 section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Recovery Process Comparison</h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-12">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800">Recovery Timeline Comparison</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Traditional ACLR -->
+                        <div>
+                            <h4 class="font-semibold mb-4 text-blue-600">Traditional ACL Reconstruction</h4>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 0-2</h5>
+                                <p class="text-sm text-gray-600">Graft begins undergoing necrosis. Patient uses brace and crutches. Therapy focuses on passive ROM.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 3-6</h5>
+                                <p class="text-sm text-gray-600">Revascularization begins. Patient off crutches by week 4. Therapy focuses on muscle strengthening.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 7-12</h5>
+                                <p class="text-sm text-gray-600">Collagen fibers begin aligning. Brace removed. Therapy focuses on balance and weight-bearing.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Months 4-12</h5>
+                                <p class="text-sm text-gray-600">Graft reaches ~80% strength by month 9. Plyometrics at month 5, agility drills at month 6+. Return to sport at 9-12 months.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Non-Surgical -->
+                        <div>
+                            <h4 class="font-semibold mb-4 text-green-600">Non-Surgical Rehabilitation</h4>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Phase 1: Weeks 0-4</h5>
+                                <p class="text-sm text-gray-600">Hinged knee brace. Quad/hamstring isometrics. Goal: Reduce swelling, restore extension.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Phase 2: Weeks 5-12</h5>
+                                <p class="text-sm text-gray-600">Closed-chain exercises (squats, step-ups). Balance training. Stationary biking.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Phase 3: Months 3-6</h5>
+                                <p class="text-sm text-gray-600">Plyometrics (double-leg → single-leg). Agility drills. Light jogging at month 4+ if stable.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Phase 4: Months 6-12</h5>
+                                <p class="text-sm text-gray-600">Sport-specific drills. Return to pivoting sports only if passing hop tests (≥90% symmetry) and ACL-RSI score >56.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Stem Cell -->
+                        <div>
+                            <h4 class="font-semibold mb-4 text-purple-600">Stem Cell-Augmented ACLR</h4>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 0-2</h5>
+                                <p class="text-sm text-gray-600">Stem cells reduce inflammation. Patient braces knee and uses crutches. Therapy focuses on mobilization.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 3-6</h5>
+                                <p class="text-sm text-gray-600">Stem cells differentiate into fibroblasts. Brace removed week 3, crutches week 4. Active ROM therapy.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Weeks 7-12</h5>
+                                <p class="text-sm text-gray-600">Graft develops better collagen alignment. Strength-building and balance therapy. Stationary biking and swimming.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5 class="font-medium">Months 4-9</h5>
+                                <p class="text-sm text-gray-600">Plyometrics and sport-specific drills. Return to cutting sports around months 9-12.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pain Management Stats -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800">Pain Management Outcomes</h3>
+                    <p class="text-sm text-gray-600 mb-2">(Grassi et al., 2022, p. 6) (Wang et al., 2021, p. 9) (Paterno, 2017, p. 323)</p>
+                    <div class="h-64">
+                        <canvas id="painChart"></canvas>
+                    </div>
+                    <div class="mt-6 grid md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2 text-blue-800">Traditional ACLR</h4>
+                            <p class="text-sm">25-30% report chronic pain at 1 year</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2 text-green-800">Non-Surgical</h4>
+                            <p class="text-sm">15-20% report chronic instability/pain</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2 text-purple-800">Stem Cell ACLR</h4>
+                            <p class="text-sm">10-15% report chronic pain (early data)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-16 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">References</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                <div class="p-8">
+                    <ol class="list-decimal pl-5 space-y-4 text-sm">
+                        <li class="pl-2">Ardern, C. L., Webster, K. E., Taylor, N. F., & Feller, J. A. (2011). Return to sport following anterior cruciate ligament reconstruction surgery: A systematic review and meta-analysis of the state of play. <i>British Journal of Sports Medicine</i>, <i>45</i>(7), 596-606. https://doi.org/10.1136/bjsm.2010.076364</li>
+                        <li class="pl-2"><i>Examining the ethics of embryonic stem cell research</i>. (2008). Harvard Stem Cell Institute. https://www.hsci.harvard.edu/examining-ethics-embryonic-stem-cell-research</li>
+                        <li class="pl-2">Grassi, A., Pizza, N., Al-zu'bi, B. B. H., Fabbro, G. D., Lucidi, G. A., & Zaffagnini, S. (2022). Clinical outcomes and osteoarthritis at very long-term follow-up after ACL reconstruction: A systematic review and meta-analysis. <i>Orthopaedic Journal of Sports Medicine</i>, <i>10</i>(1). https://doi.org/10.1177/23259671211062238</li>
+                        <li class="pl-2">Mifune, Y., Matsumoto, T., Ota, S., Nishimori, M., Usas, A., Kopf, S., Kuroda, R., Kurosaka, M., Fu, F. H., & Huard, J. (2012). Therapeutic potential of anterior cruciate ligament-derived stem cells for anterior cruciate ligament reconstruction. <i>Cell Transplantation</i>, <i>21</i>(8), 1651-1665. https://doi.org/10.3727/096368912X647234</li>
+                        <li class="pl-2">Paterno, M. V. (2017). Non-operative care of the patient with an ACL-deficient knee. <i>Current Reviews in Musculoskeletal Medicine</i>, <i>10</i>(3), 322-327. https://doi.org/10.1007/s12178-017-9431-6</li>
+                        <li class="pl-2">Paterno, M. V., Rauh, M. J., Schmitt, L. C., Ford, K. R., & Hewett, T. E. (2014). Incidence of second ACL injuries 2 years after primary ACL reconstruction and return to sport. <i>The American Journal of Sports Medicine</i>, <i>42</i>(7), 1567-1573. https://doi.org/10.1177/0363546514530088</li>
+                        <li class="pl-2">Saueressig, T., Braun, T., Steglich, N., Diemer, F., Zebisch, J., Herbst, M., Zinser, W., Owen, P. J., & Belavy, D. L. (2022). Primary surgery versus primary rehabilitation for treating anterior cruciate ligament injuries: A living systematic review and meta-analysis. <i>British Journal of Sports Medicine</i>, <i>56</i>(21), 1241-1251. https://doi.org/10.1136/bjsports-2021-105359</li>
+                        <li class="pl-2">Wang, C., Hu, Y., Zhang, S., Ruan, D., Huang, Z., He, P., Cai, H., Heng, B. C., Chen, X., & Shen, W. (2021). Application of stem cell therapy for ACL graft regeneration. <i>Stem Cells International</i>, <i>2021</i>, 1-14. https://doi.org/10.1155/2021/6641818</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 section">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">ACL Repair Hub</h3>
+                    <p class="text-gray-400">Providing evidence-based information to help you make informed decisions about ACL injury treatment.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#quiz" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                        <li><a href="#methods" class="text-gray-400 hover:text-white transition duration-300">Treatment Methods</a></li>
+                        <li><a href="#recovery" class="text-gray-400 hover:text-white transition duration-300">Recovery</a></li>
+                        <li><a href="#references" class="text-gray-400 hover:text-white transition duration-300">References</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Research Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Find a Specialist</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support Groups</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll animation observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Special handling for hero section with staggered animations
+                    if (entry.target.classList.contains('hero-content')) {
+                        const children = entry.target.children;
+                        for (let i = 0; i < children.length; i++) {
+                            children[i].style.transitionDelay = `${i * 0.2}s`;
+                        }
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observe hero content separately
+        const heroContent = document.querySelector('.hero-content');
+        observer.observe(heroContent);
+
+        // Charts
+        // Success Rates Chart
+        const successCtx = document.getElementById('successChart').getContext('2d');
+        const successChart = new Chart(successCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Traditional ACLR', 'Non-Surgical', 'Stem Cell ACLR'],
+                datasets: [{
+                    label: 'Success Rate (%)',
+                    data: [90, 65, 88],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(168, 85, 247, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(168, 85, 247, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Complications Chart (now bar graph)
+        const complicationsCtx = document.getElementById('complicationsChart').getContext('2d');
+        const complicationsChart = new Chart(complicationsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Osteoarthritis', 'Reinjury', 'Graft Failure', 'Chronic Pain', 'Infection'],
+                datasets: [{
+                    label: 'Complication Rate (%)',
+                    data: [25, 15, 10, 20, 5],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 30
+                    }
+                }
+            }
+        });
+
+        // Recovery Chart
+        const recoveryCtx = document.getElementById('recoveryChart').getContext('2d');
+        const recoveryChart = new Chart(recoveryCtx, {
+            type: 'line',
+            data: {
+                labels: ['1 month', '3 months', '6 months', '9 months', '12 months'],
+                datasets: [
+                    {
+                        label: 'Traditional ACLR',
+                        data: [20, 40, 65, 85, 95],
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Non-Surgical',
+                        data: [30, 50, 70, 75, 80],
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Stem Cell ACLR',
+                        data: [25, 55, 80, 90, 95],
+                        borderColor: 'rgba(168, 85, 247, 1)',
+                        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Recovery Progress (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Common Knee Injuries Chart (new pie chart)
+        const injuriesCtx = document.getElementById('injuriesChart').getContext('2d');
+        const injuriesChart = new Chart(injuriesCtx, {
+            type: 'pie',
+            data: {
+                labels: ['ACL Tears', 'Meniscus Tears', 'MCL Sprains', 'Patellar Dislocations', 'Other'],
+                datasets: [{
+                    data: [35, 25, 20, 10, 10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Pain Chart
+        const painCtx = document.getElementById('painChart').getContext('2d');
+        const painChart = new Chart(painCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Immediate Post-Op', '1 Month', '3 Months', '6 Months', '1 Year'],
+                datasets: [
+                    {
+                        label: 'Traditional ACLR',
+                        data: [80, 60, 40, 30, 25],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                    },
+                    {
+                        label: 'Stem Cell ACLR',
+                        data: [60, 40, 25, 18, 12],
+                        backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                        borderColor: 'rgba(168, 85, 247, 1)',
+                        pointBackgroundColor: 'rgba(168, 85, 247, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(168, 85, 247, 1)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        // Quiz Logic
+        const quizQuestions = [
+            {
+                question: "What is your age group?",
+                options: [
+                    { text: "Under 18", value: "young" },
+                    { text: "18-35", value: "adult" },
+                    { text: "36-50", value: "middle" },
+                    { text: "Over 50", value: "senior" }
+                ]
+            },
+            {
+                question: "How active is your lifestyle?",
+                options: [
+                    { text: "Very active (competitive sports)", value: "high" },
+                    { text: "Moderately active (recreational sports)", value: "moderate" },
+                    { text: "Light activity (walking, occasional exercise)", value: "light" },
+                    { text: "Sedentary (little to no exercise)", value: "sedentary" }
+                ]
+            },
+            {
+                question: "How soon do you need to return to sports/work?",
+                options: [
+                    { text: "As soon as possible (<6 months)", value: "fast" },
+                    { text: "Within 6-12 months", value: "medium" },
+                    { text: "No rush", value: "slow" }
+                ]
+            },
+            {
+                question: "Are you open to experimental treatments if they may improve long-term outcomes?",
+                options: [
+                    { text: "Yes, definitely", value: "yes" },
+                    { text: "Maybe, if proven safe", value: "maybe" },
+                    { text: "No, I prefer traditional methods", value: "no" }
+                ]
+            },
+            {
+                question: "How important is minimizing recovery pain to you?",
+                options: [
+                    { text: "Extremely important", value: "high" },
+                    { text: "Important but not primary concern", value: "medium" },
+                    { text: "Not a major factor in my decision", value: "low" }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startQuiz() {
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-questions').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'flex items-center';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'quiz-option';
+                input.id = `option-${index}`;
+                input.value = option.value;
+                input.className = 'mr-2';
+                
+                const label = document.createElement('label');
+                label.htmlFor = `option-${index}`;
+                label.textContent = option.text;
+                label.className = 'cursor-pointer';
+                
+                optionElement.appendChild(input);
+                optionElement.appendChild(label);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').classList.toggle('hidden', currentQuestion === 0);
+            document.getElementById('next-btn').textContent = currentQuestion === quizQuestions.length - 1 ? 'Submit' : 'Next';
+        }
+
+        function nextQuestion() {
+            const selectedOption = document.querySelector('input[name="quiz-option"]:checked');
+            if (!selectedOption) {
+                alert('Please select an option');
+                return;
+            }
+            
+            answers[currentQuestion] = selectedOption.value;
+            
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-questions').classList.add('hidden');
+            document.getElementById('quiz-results').classList.remove('hidden');
+            
+            // Simple scoring - this would be more sophisticated in a real application
+            const activityLevel = answers[1];
+            const returnTime = answers[2];
+            const experimental = answers[3];
+            const painImportance = answers[4];
+            
+            let result;
+            
+            if (activityLevel === 'sedentary' || activityLevel === 'light') {
+                result = {
+                    title: "Non-Surgical Rehabilitation",
+                    description: "Based on your activity level and preferences, non-surgical rehabilitation may be the best option for you. This approach focuses on strengthening the muscles around your knee to compensate for the ACL injury, avoiding surgery risks and potentially providing good functional outcomes for less active individuals.",
+                    color: "green"
+                };
+            } else if (experimental === 'yes' && (activityLevel === 'high' || returnTime === 'fast')) {
+                result = {
+                    title: "Stem Cell-Augmented ACL Reconstruction",
+                    description: "Given your active lifestyle and openness to innovative treatments, stem cell-augmented ACL reconstruction could be ideal. This method may offer faster healing and better long-term outcomes by enhancing the body's natural repair processes, though availability may be limited in some areas.",
+                    color: "purple"
+                };
+            } else {
+                result = {
+                    title: "Traditional ACL Reconstruction",
+                    description: "Traditional ACL reconstruction is likely your best option. It's a proven method with high success rates, especially for active individuals. While recovery takes time, it provides reliable stability for returning to sports and physical activities.",
+                    color: "blue"
+                };
+            }
+            
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="bg-${result.color}-100 border-l-4 border-${result.color}-500 p-4 mb-4">
+                    <h4 class="font-bold text-${result.color}-800 text-xl">${result.title}</h4>
+                    <p class="text-gray-700 mt-2">${result.description}</p>
+                </div>
+                <div class="mt-6">
+                    <h5 class="font-semibold mb-2">Next Steps:</h5>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Consult with an orthopedic specialist</li>
+                        <li>Review detailed information about ${result.title.toLowerCase()}</li>
+                        <li>Discuss insurance coverage and costs</li>
+                        <li>Develop a personalized treatment plan</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            answers = [];
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-questions').classList.remove('hidden');
+            showQuestion();
+        }
+    </script>
+</body>
+</html>
